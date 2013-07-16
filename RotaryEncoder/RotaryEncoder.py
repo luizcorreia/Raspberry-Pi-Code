@@ -63,4 +63,7 @@ class RotaryEncoder:
 		self.value = 0
 		self.lastEncoded = 0
 		
+	def get_value(self)
+		return self.value
+		
 		
