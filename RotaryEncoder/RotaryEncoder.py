@@ -19,9 +19,9 @@ class RotaryEncoder:
 		GPIO.add_event_callback(self.b_pin, updateEncoders)
 		
 		
-	"""                           _______         _______       
+	"""                   _______         _______       
 //               Pin_a ______|       |_______|       |______ Pin_a
-// negative <---         _______         _______         __      --> positive
+// negative <---          _______         _______         __      --> positive
 //               Pin_b __|       |_______|       |_______|   Pin_b
 
 		//	old	old	new	new
@@ -46,18 +46,18 @@ class RotaryEncoder:
 """	
 	def updateEncoders(self,chan):
 		MSB = GPIO.input(self.a_pin);
-        LSB = GPIO.input(self.b_pin);
+                LSB = GPIO.input(self.b_pin);
 
-        encoded = (MSB << 1) | LSB;
-        sum = (self.lastEncoded << 2) | encoded;
+        	encoded = (MSB << 1) | LSB;
+        	sum = (self.lastEncoded << 2) | encoded;
 
-        if(sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011) self.value++;
-        if(sum == 0b1110 || sum == 0b0111 || sum == 0b0001 || sum == 0b1000) self.value--;
+        	if(sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011) self.value++;
+        	if(sum == 0b1110 || sum == 0b0111 || sum == 0b0001 || sum == 0b1000) self.value--;
 		
 		if(sum == 0b0110 || sum == 0b1001) self.value += 2;
-        if(sum == 0b0011 || sum == 0b1100) self.value -= 2;
+        	if(sum == 0b0011 || sum == 0b1100) self.value -= 2;
 
-        self.lastEncoded = encoded;
+        	self.lastEncoded = encoded;
 		
 	def resetEncoder(self)
 		self.value = 0
